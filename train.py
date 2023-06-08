@@ -1,21 +1,20 @@
 from __future__ import print_function
 import os
-from data import Dataset
+from data.dataset import Dataset
 import torch
 from torch.utils import data
 import torch.nn.functional as F
 from models import *
 import torchvision
-from utils import Visualizer, view_model
+# from utils import Visualizer, view_model
 import torch
 import numpy as np
 import random
 import time
-from config import Config
+from config import config
 from torch.nn import DataParallel
 from torch.optim.lr_scheduler import StepLR
 from test import *
-
 
 def save_model(model, save_path, name, iter_cnt):
     save_name = os.path.join(save_path, name + '_' + str(iter_cnt) + '.pth')
