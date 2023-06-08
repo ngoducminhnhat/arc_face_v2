@@ -167,15 +167,12 @@ class ResNetFace(nn.Module):
         self.bn1 = nn.BatchNorm2d(64)
         self.prelu = nn.PReLU()
         self.maxpool = nn.MaxPool2d(kernel_size=2, stride=2)
-        self.layer1 = self._make_layer(block, 64, layers[0], stride=2)
+        self.layer1 = self._make_layer(block, 64, layers[0])
         self.layer2 = self._make_layer(block, 128, layers[1], stride=2)
         self.layer3 = self._make_layer(block, 256, layers[2], stride=2)
         self.layer4 = self._make_layer(block, 512, layers[3], stride=2)
-        # self.avgpool = nn.AvgPool2d(8, stride=1)
-        # self.fc = nn.Linear(512 * block.expansion, num_classes)
-        self.fc5 = nn.Linear(512 * 16 * 16, 512) # 选用不同的网络时需要修改。
-        # self.bn4 = nn.BatchNorm2d(512)
-        # self.dropout = nn.Dropout()
+        self.bn4 = nn.BatchNorm2d(512)
+        self.dropout = nn.Dropout()
         self.fc5 = nn.Linear(512 * 8 * 8, 512)
         self.bn5 = nn.BatchNorm1d(512)
 
