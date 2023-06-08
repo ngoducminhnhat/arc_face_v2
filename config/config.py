@@ -1,7 +1,8 @@
 class Config(object):
-    backbone = 'resnet50' #选用的网络结构
+    env = 'default'
+    backbone = 'resnet18'
     classify = 'softmax'
-    num_classes = 1050 #等于人脸中类别的个数，大于或者小于报错
+    num_classes = 1200
     metric = 'arc_margin'
     easy_margin = False
     use_se = False
@@ -10,15 +11,16 @@ class Config(object):
     display = False
     finetune = False
 
+
     train_root = '/kaggle/input/arcfae/dataset/not_mask'
-    train_list = '/data/Datasets/webface/not_mask_8.txt'
-    val_list = '/data/Datasets/webface/not_mask_2.txt'
+    train_list = '/kaggle/input/txt-file/txt/not_mask_8.txt'
+    val_list = '/kaggle/input/txt-file/txt/not_mask_2.txt'
 
     test_root = '/data1/Datasets/anti-spoofing/test/data_align_256'
     test_list = 'test.txt'
 
     lfw_root = '/kaggle/input/arcfae/dataset/lfw-align-128'
-    lfw_test_list = '/data/Datasets/lfw/lfw_test_pair.txt'
+    lfw_test_list = '/kaggle/input/txt-file/txt/lfw_test_pair.txt'
 
     checkpoints_path = 'checkpoints'
     load_model_path = 'models/resnet18.pth'
