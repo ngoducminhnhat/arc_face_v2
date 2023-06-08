@@ -5,7 +5,7 @@ class Config(object):
     num_classes = 1200
     metric = 'arc_margin'
     easy_margin = False
-    use_se = False
+    use_se = True
     loss = 'focal_loss'
 
     display = False
