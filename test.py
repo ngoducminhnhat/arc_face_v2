@@ -68,19 +68,19 @@ def get_featurs(model, test_list, batch_size=10):
 
             fe_1 = output[::2]
             fe_2 = output[1::2]
+
+            # Reshape fe_1 and fe_2 to have the same shape
+            fe_1 = fe_1.reshape(-1, fe_1.shape[-1])
+            fe_2 = fe_2.reshape(-1, fe_2.shape[-1])
+
             feature = np.hstack((fe_1, fe_2))
 
-            features.extend(feature)
-            images = []
-
-            # Move this line inside the if block
-            output = model(data)
-            feature = output.data.cpu().numpy()
-
-            if len(features) == 0:  # Fix the condition here
+            if len(features) == 0:
                 features = feature
             else:
                 features = np.concatenate((features, feature), axis=0)
+
+            images = []
 
     features = np.array(features)
     return features, cnt
