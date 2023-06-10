@@ -125,7 +125,6 @@ def cal_accuracy(y_score, y_true):
 
     return (best_acc, best_th)
 
-
 def test_performance(fe_dict, pair_list):
     with open(pair_list, 'r') as fd:
         pairs = fd.readlines()
@@ -135,13 +134,14 @@ def test_performance(fe_dict, pair_list):
     for pair in pairs:
         splits = pair.split()
         if len(splits) == 3:
-            fe_1 = fe_dict[splits[0]]
-            fe_2 = fe_dict[splits[1]]
-            label = int(splits[2])
-            sim = cosin_metric(fe_1, fe_2)
+            fe_1 = fe_dict.get(splits[0])
+            fe_2 = fe_dict.get(splits[1])
+            if fe_1 is not None and fe_2 is not None:
+                label = int(splits[2])
+                sim = cosin_metric(fe_1, fe_2)
 
-            sims.append(sim)
-            labels.append(label)
+                sims.append(sim)
+                labels.append(label)
         else:
             continue
 
