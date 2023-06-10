@@ -73,7 +73,7 @@ def get_featurs(model, test_list, batch_size=10):
 
             features.extend(feature)
             images = []
-
+        features = np.array(features)
     return features, cnt
 
 
