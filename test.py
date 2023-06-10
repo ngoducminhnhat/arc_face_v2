@@ -49,7 +49,7 @@ def get_featurs(model, test_list, batch_size=10):
     for i, img_path in enumerate(test_list):
         image = load_image(img_path)
         if image is None:
-            print('read {} error'.format(img_path))
+            # print('read {} error'.format(img_path))
             continue
 
         images.append(image)
