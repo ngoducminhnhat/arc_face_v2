@@ -66,23 +66,19 @@ def get_featurs(model, test_list, batch_size=10):
             output = model(data)
             output = output.data.cpu().numpy()
 
-            fe_1 = output[::2]
-            fe_2 = output[1::2]
-
-            # Reshape fe_1 and fe_2 to have the same shape
-            fe_1 = fe_1.reshape(-1, fe_1.shape[-1])
-            fe_2 = fe_2.reshape(-1, fe_2.shape[-1])
-
-            feature = np.hstack((fe_1, fe_2))
+            # Separate the feature vectors for each image in the batch
+            features_batch = np.split(output, len(images))
 
             if len(features) == 0:
-                features = feature
+                features = features_batch
             else:
-                features = np.concatenate((features, feature), axis=0)
+                # Check if the feature sizes match before concatenating
+                assert len(features_batch[0]) == len(features[0]), "Feature sizes do not match"
+                features = [np.concatenate((f1, f2), axis=1) for f1, f2 in zip(features, features_batch)]
 
             images = []
 
-    features = np.array(features)
+    features = np.concatenate(features, axis=0)
     return features[:len(test_list)], cnt
 
 
