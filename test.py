@@ -83,7 +83,8 @@ def get_featurs(model, test_list, batch_size=10):
             images = []
 
     features = np.array(features)
-    return features, cnt
+    return features[:len(test_list)], cnt
+
 
 
 def load_model(model, model_path):
