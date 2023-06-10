@@ -73,6 +73,15 @@ def get_featurs(model, test_list, batch_size=10):
 
             features.extend(feature)
             images = []
+
+        output = model(data)
+        feature = output.data.cpu().numpy()
+
+        if features.size == 0:
+            features = feature
+        else:
+            features = np.concatenate((features, feature), axis=0)
+
         features = np.array(features)
     return features, cnt
 
