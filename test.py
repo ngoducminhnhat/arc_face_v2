@@ -95,12 +95,15 @@ def load_model(model, model_path):
     model.load_state_dict(model_dict)
 
 
-def get_feature_dict(test_list, features):
+def get_feature_dict(identity_list, features):
     fe_dict = {}
-    for i, each in enumerate(test_list):
-        # key = each.split('/')[1]
-        fe_dict[each] = features[i]
+    for i, each in enumerate(identity_list):
+        if i < len(features):
+            fe_dict[each] = features[i]
+        else:
+            break
     return fe_dict
+
 
 
 def cosin_metric(x1, x2):
