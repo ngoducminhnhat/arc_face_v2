@@ -77,7 +77,7 @@ def get_featurs(model, test_list, batch_size=10):
             output = model(data)
             feature = output.data.cpu().numpy()
 
-            if features.size == 0:
+            if len(features) == 0:  # Fix the condition here
                 features = feature
             else:
                 features = np.concatenate((features, feature), axis=0)
