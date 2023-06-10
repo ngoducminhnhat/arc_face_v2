@@ -45,7 +45,7 @@ def load_image(img_path):
 
 def get_featurs(model, test_list, batch_size=10):
     images = []
-    features = None
+    features = []
     cnt = 0
     for i, img_path in enumerate(test_list):
         image = load_image(img_path)
@@ -71,15 +71,10 @@ def get_featurs(model, test_list, batch_size=10):
             fe_2 = output[1::2]
             feature = np.hstack((fe_1, fe_2))
 
-            if features is None:
-                features = feature
-            else:
-                features = np.vstack((features, feature))
-
+            features.extend(feature)
             images = []
 
     return features, cnt
-
 
 
 def load_model(model, model_path):
