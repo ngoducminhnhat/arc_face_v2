@@ -134,17 +134,19 @@ def test_performance(fe_dict, pair_list):
     labels = []
     for pair in pairs:
         splits = pair.split()
-        fe_1 = fe_dict[splits[0]]
-        fe_2 = fe_dict[splits[1]]
-        label = int(splits[2])
-        sim = cosin_metric(fe_1, fe_2)
+        if len(splits) == 3:
+            fe_1 = fe_dict[splits[0]]
+            fe_2 = fe_dict[splits[1]]
+            label = int(splits[2])
+            sim = cosin_metric(fe_1, fe_2)
 
-        sims.append(sim)
-        labels.append(label)
+            sims.append(sim)
+            labels.append(label)
+        else:
+            continue
 
     acc, th = cal_accuracy(sims, labels)
     return acc, th
-
 
 def lfw_test(model, img_paths, identity_list, compair_list, batch_size):
     s = time.time()
