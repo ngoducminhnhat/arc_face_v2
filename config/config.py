@@ -19,8 +19,8 @@ class Config(object):
     test_root = '/data1/Datasets/anti-spoofing/test/data_align_256'
     test_list = 'test.txt'
 
-    lfw_root = '/kaggle/input/arcfae/dataset/lfw-align-128'
-    lfw_test_list = '/kaggle/input/txt-file/txt/lfw_test_pair.txt'
+    lfw_root = '/kaggle/input/arcfae/dataset/not_mask'
+    lfw_test_list = '/kaggle/input/txt-total/img_train.txt'
 
     checkpoints_path = ''
     load_model_path = '/kaggle/input/resnet-pth12/resnet18_110.pth'
