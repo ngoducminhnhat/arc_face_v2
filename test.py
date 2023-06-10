@@ -62,7 +62,7 @@ def get_featurs(model, test_list, batch_size=10):
             data = data.to(torch.device("cuda"))
 
             # Reshape the input tensor to 4 dimensions (batch_size, channels, height, width)
-            data = data.view(-1, *data.shape[2:])
+            data = data.reshape(-1, *data.shape[2:])
 
             output = model(data)
             output = output.data.cpu().numpy()
