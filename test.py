@@ -78,8 +78,11 @@ def get_featurs(model, test_list, batch_size=10):
 
             images = []
 
-    features = np.concatenate(features, axis=0)
+    if len(features) > 0:
+        features = np.concatenate(features, axis=0)
+
     return features[:len(test_list)], cnt
+
 
 
 
