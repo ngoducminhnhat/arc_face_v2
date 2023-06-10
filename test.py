@@ -69,19 +69,21 @@ def get_featurs(model, test_list, batch_size=10):
             # Separate the feature vectors for each image in the batch
             features_batch = np.split(output, len(images))
 
-            if len(features) == 0:
+            if not features:
                 features = features_batch
             else:
-                # Check if the feature sizes match before concatenating
                 assert len(features_batch[0]) == len(features[0]), "Feature sizes do not match"
                 features = [np.concatenate((f1, f2), axis=1) for f1, f2 in zip(features, features_batch)]
 
             images = []
 
-    if len(features) > 0:
+    if features:
         features = np.concatenate(features, axis=0)
+    else:
+        features = np.empty((0,))  # Empty array when no features are extracted
 
     return features[:len(test_list)], cnt
+
 
 
 
