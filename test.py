@@ -154,7 +154,13 @@ def lfw_test(model, img_paths, identity_list, compair_list, batch_size):
     features, cnt = get_featurs(model, img_paths, batch_size=batch_size)
     print(features.shape)
     t = time.time() - s
-    print('total time is {}, average time is {}'.format(t, t / cnt))
+
+    if cnt == 0:
+        avg_time = 0
+    else:
+        avg_time = t / cnt
+
+    print('total time is {}, average time is {}'.format(t, avg_time))
     fe_dict = get_feature_dict(identity_list, features)
     acc, th = test_performance(fe_dict, compair_list)
     print('lfw face verification accuracy: ', acc, 'threshold: ', th)
