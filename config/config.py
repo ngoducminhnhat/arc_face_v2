@@ -22,8 +22,8 @@ class Config(object):
     lfw_root = '/kaggle/input/arcfae/dataset/lfw-align-128'
     lfw_test_list = '/kaggle/input/txt-file/txt/lfw_test_pair.txt'
 
-    # checkpoints_path = 'checkpoints'
-    load_model_path = 'models/resnet18.pth'
+    checkpoints_path = '/kaggle/input/resnet-pth12/resnet18_110.pth'
+    load_model_path = '/kaggle/input/resnet-pth12/resnet18_110.pth'
     test_model_path = '/kaggle/input/resnet-pth12/resnet18_110.pth'
     save_interval = 10
 
