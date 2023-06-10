@@ -42,7 +42,6 @@ def load_image(img_path):
     image /= 127.5
     return image
 
-
 def get_featurs(model, test_list, batch_size=10):
     images = []
     features = []
@@ -74,15 +73,16 @@ def get_featurs(model, test_list, batch_size=10):
             features.extend(feature)
             images = []
 
-        output = model(data)
-        feature = output.data.cpu().numpy()
+            # Move this line inside the if block
+            output = model(data)
+            feature = output.data.cpu().numpy()
 
-        if features.size == 0:
-            features = feature
-        else:
-            features = np.concatenate((features, feature), axis=0)
+            if features.size == 0:
+                features = feature
+            else:
+                features = np.concatenate((features, feature), axis=0)
 
-        features = np.array(features)
+    features = np.array(features)
     return features, cnt
 
 
